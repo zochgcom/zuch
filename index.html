@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css training</title>
+</head>
+<link rel="stylesheet" type="text/css" href="./css/css.css">
+<body>
+    <div id="sidebar">
+        <img src="icon.svg" width="35" style="position:fixed; top: 6px;left:6px" class="icon">
+        <ul class="horizontal-list">
+            <li><a href="./games">Games</a></li>
+        </ul>
+    </div>
+
+    <h1 id="header">Zuch</h1>
+
+    <div id="updates">
+    <div id="news">
+
+    </div>
+    
+    <div id="new-games">
+            
+        </div>
+        </div>
+        
+</body>
+<script>
+    var news = [{header:"New Website",body:"We have a new website guys! It is really cool!"}]
+
+    for (i=0;i<news.length;i++) {
+        var header = document.createElement("h2");
+        var text = document.createElement("p");
+
+        header.innerHTML = news[i].header;
+        text.innerHTML = news[i].body;
+
+        document.getElementById("news").appendChild(header);
+        document.getElementById("news").appendChild(text);
+    }
+
+</script>
+</html>

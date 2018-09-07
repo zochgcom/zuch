@@ -1,0 +1,127 @@
+html {
+    font-family: consolas,Impact;
+    margin:0px;
+    color:white;
+}
+
+p {
+    white-space: pre-line
+}
+
+body {
+    background-color: #1f1f1f;
+}
+
+#sidebar {
+    background-color:#2f2f2f00;
+    width:50px;
+    height:50px;
+    margin:0px;
+    position:fixed;
+    top:0px;
+    left:0px;
+    overflow: hidden;
+    text-indent: -1000em;
+
+    -webkit-transition: width 0.2s, background-color 0.2s,height 0.1s;
+    transition: width 0.2s, background-color 0.2s,height 0.1s;
+}
+
+#sidebar:hover {
+    text-indent: 0;
+    width:250px;
+    height:100%;
+    background-color: #2f2f2f;
+    -webkit-transition: width 0.2s, background-color 0.2s,height 0.1s;
+    transition: width 0.2s, background-color 0.2s,height 0.1s;
+}
+
+#sidebar:hover .icon {
+    display:none;
+}
+
+ul {
+    list-style: none;
+    margin-left:-16px;
+}
+
+.horizontal-list li {
+    color:#ffffff;
+    cursor:pointer;
+    width:fit-content;
+
+    -webkit-transition: color 0.1s;
+    transition: color 0.1s;
+}
+
+.horizontal-list li:hover {
+    color:#ffc805;
+    cursor:pointer;
+
+    -webkit-transition: color 0.1s;
+    transition: color 0.1s;
+}
+
+a {
+    color:inherit;
+    pointer:inherit;
+    text-decoration: none;
+}
+
+#header {
+    margin:0px;
+    text-align: center;
+    font-size: 50px;
+    color:white;
+}
+
+#news {
+
+    display: inline-block;
+
+    margin:50px;
+
+    width:400px;
+    height:400px;
+    background-color:#3f3f3f;
+    border:10px solid #2f2f2f;
+    border-radius:2px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#new-games {
+    
+    display: inline-block;
+
+        margin:50px;
+    
+        width:400px;
+        height:400px;
+        background-color:#3f3f3f;
+        border:10px solid #2f2f2f;
+        border-radius:2px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #updates {
+        width:fit-content;
+        height:fit-content;
+
+        margin: 0 auto;
+    }
+
+    body::-webkit-scrollbar {
+        width: .5em;
+    }
+     
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+     
+    body::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid slategrey;
+    }
