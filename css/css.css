@@ -28,7 +28,7 @@ body {
 }
 
 #sidebar:hover {
-    text-indent: 0;
+    text-indent: 0em;
     width:250px;
     height:100%;
     background-color: #2f2f2f;
@@ -49,6 +49,8 @@ ul {
     color:#ffffff;
     cursor:pointer;
     width:fit-content;
+
+    margin:20px 8px;
 
     -webkit-transition: color 0.1s;
     transition: color 0.1s;
@@ -118,10 +120,15 @@ a {
     }
      
     body::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     }
      
     body::-webkit-scrollbar-thumb {
       background-color: darkgrey;
       outline: 1px solid slategrey;
+    }
+
+    .withshit {
+        list-style-type: square;
     }

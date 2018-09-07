@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+ <link rel="shortcut icon" href="New_jar.png">
+ 
+    <title>Jar Clicker</title>
+	
+	<style>
+	
+	/*canvas:hover {
+	cursor: url("jar_mus.ico"), auto;
+	}	*/
+	</style>
+
+	<link rel="stylesheet" type="text/css" href="../../css/css.css">
+</head>
+ <body>
+
+
+        <div id="sidebar">
+                <img src="../../icon.svg" width="35" style="position:fixed; top: 6px;left:6px" class="icon">
+                <ul class="horizontal-list">
+                    <li><a href="../../	"><h2>Home</h2></a></li>
+                    <li><a href="../../games"><h3>Games</h3></a>
+                        <ul style="margin-top:-16px" class="withshit">
+                            <li style="margin-top:-16px; color:#ffc805"><a>Jar Clicker</a></li>
+                            <li style="margin-top:-16px"><a href="../evocells">Evoluion Cells</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./updates"><h3>Updates</h3></a></li>
+                </ul>
+            </div>
+ 
+ 
+<!-- <img width="222" height="144" class="sd-res logo-normal" alt="Zochg.com" src="Drawing.png"> -->
+	<!--This draws the Canvas on the webpage -->
+	<div style="margin:0 auto; width:500px; height:500px;">
+      <canvas id="mycanvas" style="margin:0 auto">
+		<h1 style="color:white; font-family:sans-serif">LOADING...</h1>	  
+	</canvas> 
+	</div>
+
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="processing.min.js"></script> 
+ 
+ <!--
+DOWNLOAD:
+Notepad++
+Chrome
+
+
+ -->
+ <script src="numerals.min.js"></script>
+ 
+<script type="text/javascript" id="cookieinfo"
+    src="//cookieinfoscript.com/js/cookieinfo.min.js"
+    data-bg="#645862"
+    data-fg="#FFFFFF"
+    data-link="#F1D600"
+    data-cookie="acceptCookies"
+    data-text-align="left"
+       data-close-text="I accept Cookies!">
+</script>
+
+ <script>
+ 
+function setCookie(varNavn, value) {
+
+// Build the expiration date string:
+var expiration_date = new Date();
+expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+
+var expires = new Date();
+ expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
+
+
+document.cookie = varNavn + "=" + value + "; path=/jar-clicker/; expires=Thu, 18 Dec 2033 12:00:00 UTC; domain=zochgcom.github.io";
+}
+
+function getCookie(varNavn) {
+    var name = varNavn + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+ 
+ 
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(500, 500); 
+        frameRate(30);
+	
+		//time
+		var minutesInt = 0;
+		var hoursInt = 0;
+		
+		secondsInt = getCookie("timeS");
+		
+		if (getCookie("timeM") === "" || getCookie("timeM") === "0") {
+		var minutesInt = 0;
+		} else {
+		minutesInt = getCookie("timeM");
+		}
+		
+		if (getCookie("timeH") === "" || getCookie("timeM") === "0") {
+		var hoursInt = 0;
+		} else {
+		hoursInt = getCookie("timeH");
+		}
+		
+		//?Jars
+		var NewsX = 40;
+		var NewsY = 40;
+        var NewsHoojde = 400;
+        var NewsBredde = 335;
+        var Newsjar = false;
+		
+        var ShopjarX = 40;
+        var ShopjarY =  40;
+        var ShopjarBredde = 335;
+        var ShopjarHoojde = 400;
+        var Shopjar = false;
+		
+        var TvjarX = 40;
+        var TvjarY = 40;
+        var TvHoojde = 400;
+        var TvBredde = 335;
+        var Tvjar = false;
+		
+        var ForjarX = 40;
+        var ForjarY = 40;
+        var ForjarBredde = 335;
+        var ForjarHoojde = 400;		
+		var Forjar = false;
+		
+		//creditAd
+		var creditX = 40;
+		var creditY = 40;
+		var creditBredde = 400;
+		var creditHoojde = 335;
+		
+		
+		//Credit's
+		var creditsignX = 360; //width
+		var creditsingY = 245; //hieght
+		var creditOpen = false;
+		var creditsignBredde = 50; //x
+		var creditssignHoojde = 350; //y
+		
+      
+	  //shoppen
+	  var shopsignX = 340;
+	  var shopsignY = 400;
+	 var shopON = false;
+	 var shopsignBredde = 180;
+	 var shopsignHoojde = 180;
+	 
+	 //skoven
+	 var skovBredde = 80;
+	 var skovHoojde = 80;
+	 var skovX = 400;
+	 var skovY = 310;
+	 
+	 //info tegn
+	 var infoX = 335;
+	 var infoY = 335;
+	var infoBredde = 40;
+	var infoHoojde = 40;
+	
+	var infoX2 = 335;
+	 var infoY2 = 230;
+	var infoBredde2 = 40;
+	var infoHoojde2 = 40;
+	
+	var infoX3 = 335;
+	 var infoY3 = 130;
+	var infoBredde3 = 40;
+	var infoHoojde3 = 40;
+	
+	var infoX4 = 335;
+	 var infoY4 = 30;
+	var infoBredde4 = 40;
+	var infoHoojde4 = 40;
+	 
+	 //pris
+	 var skovpris = 50;
+	 var butikpris = 100;
+	 var avispris = 350;
+	 var tvpris = 10000;
+	 
+	 //bigcoin			
+	var bigcoinX = random(100,300);
+	var bigcoinY = random(100,300);
+	var bigcoinHoojde = 100;
+	var bigcoinBredde = 100;
+	var bigcoinCountdown = random(15000,20000);
+	
+	 //Butik
+	 var butikBredde = 80;
+	 var butikHoojde = 80;
+	 var butikX = 400;
+	 var butikY = 210;
+	 
+	 //avis
+	 var avisBredde = 100;
+	 var avisHoojde = 80;
+	 var avisX = 400;
+	 var avisY = 110;
+	 
+	 //tv
+	 var tvBredde = 100;
+	 var tvHoojde = 100;
+	 var tvX = 400;
+	 var tvY = 10;
+	 
+	 //Krukken / Jar
+	 var x = -100;
+	 var y = 80;
+	 var jarSizeX = 100;
+	 var jarSizeY = 100;
+	 var TimesClicked = 0;
+	 var HideJar = false;
+	 
+	 //penge
+	 var money = 0;
+	 money = parseInt( getCookie("money")); //setCookie("money", money);
+	 
+	 var smoney = money;
+	  
+	 var coinX = 200 - 25;
+	 var coinY = 200 - 25;
+	 
+	 //penge i luften
+	 var coinListX = [];
+	 var coinListY = [];
+	 var coinsFalling = [];
+	 
+	 //Skove vi har koobt
+	 var skovNumber = 0;
+	 
+	 //butikker vi har koobt 
+	 var butikNumber = 0;
+	 
+	 //aviser vi har koobt
+	 var avisNumber = 0;
+	 
+	 //tv'er vi har koobt 
+	 var tvNumber = 0;
+	 
+	 //defining times as a float so that shit doesen't hit the fan
+	 var times;
+	 
+	 //Secrets
+	 var SatanConfirmed = false;
+	 
+	 
+	 //BarY
+	 if (getCookie("barProg") === 0 || getCookie("barProg") === "") {
+	 var barY = 0;
+	 setCookie("barProg", barY);
+	 } else {
+	 var barY = parseInt(getCookie("barProg"));
+	 }
+	 
+	 //BarBG
+	 if (getCookie("barProg2") === 0 || getCookie("barProg2") === "") {
+	 var barYPos = 420;
+	 setCookie("barProg2", barYPos);
+	 } else {
+	 var barYPos = parseInt(getCookie("barProg2"));
+	 }
+	 
+	 //Time
+	 if (getCookie("times") === 0 || getCookie("times") === "") {
+	 times = 0.25;
+	 } else {
+	 times = parseFloat(getCookie("times"));
+	 }
+	 
+	 
+	 //BarBackground
+	 var barBackgroundY = 120;
+	 var BGbarY = 300;
+	 
+	 //Bar Filled
+	 var BarFilledX = 52;
+	 var BarFilledY = 280;
+	 var BarFilled = false;
+	 
+	 //dedicate colors
+	 var forrestRed = 255;
+	 var forrestGreen = 0;
+	 
+	 var butikRed = 255;
+	 var butikGreen = 0;
+	 
+	 var avisRed = 255;
+	 var avisGreen = 0;
+	 
+	 var tvRed = 255;
+	 var tvGreen = 0;
+	 
+	 //click per seconde
+	 var CPS = 0;
+	 var CPS2 = CPS;
+	 var CPSb = 0;
+	 
+	 //Version Variable
+	 var vers = "1.5.6";
+	
+    skovNumber =  parseInt( getCookie("skovNumber"));
+    butikNumber =  parseInt( getCookie("butikNumber"));
+    avisNumber =  parseInt( getCookie("avisNumber"));
+    tvNumber =  parseInt( getCookie("tvNumber"));
+    secondsInt =  parseInt( getCookie("secondsInt"));
+	TimesClicked = parseInt ( getCookie("TimesClicked"));
+	
+    if (getCookie("butikpris") === "0" || getCookie("tvpris") === "" ) {
+	
+	} else {
+	butikpris =  parseInt( getCookie("butikpris"));
+	}
+	
+	if (getCookie("tvpris") === "0" || getCookie("tvpris") === "" ) {
+	
+	} else {
+	tvpris =  parseInt( getCookie("tvpris"));
+	}
+	
+	if (getCookie("avispris") === "0" || getCookie("avispris") === "" ) {
+	
+	} else {
+	avispris =  parseInt( getCookie("avispris"));
+	}
+	
+	if (getCookie("skovpris") === "0" || getCookie("tvpris") === "" ) {
+	
+	} else {
+	skovpris =  parseInt( getCookie("skovpris"));
+	}
+
+	 //timer
+	 var autoClicktime = 1000; //millis()
+	 var autoClickTimestamp = millis();
+	 
+	 var autoClicktimeM = 1000/50; //millis()
+	 var autoClickTimestampM = millis();
+	 
+	 var mouseClicked = function(){
+	 
+	 if (mouseX < 5 && mouseY < 5 && shopON === true && creditOpen === true) {
+	 //edit to MADDNEESSS!
+	 avisNumber += 99999;
+	 money += 99999;
+	 skovNumber += 99999;
+	 butikNumber += 99999;
+	 tvNumber += 99999;
+	 shopNumber += 99999;
+	 //edit pris
+	 avispris = 0;
+	 skovpris = 0;
+	 butikpris = 0;
+	 tvpris = 0;
+	 shoppris = 0;
+	 
+	 }
+	 
+	 if (mouseX > 460 && mouseY < 20 && shopON === true) {
+	 //Reset
+	 var resetVerify = confirm("Do you wan't to reset?")
+	 
+	 if (resetVerify === true) {
+	 
+		avisNumber = 0;
+		money = 0;
+		skovNumber = 0;
+		butikNumber = 0;
+		tvNumber = 0;
+		shopNumber = 0;
+		skovpris = 50;
+		butikpris = 100;
+		avispris = 350;
+		tvpris = 10000;
+		secondsInt = 0;
+		minutesInt = 0;
+		hoursInt = 0;
+		TimesClicked = 0;
+		times = 0.25;
+		barY = 0;
+		barYPos = 420;
+		
+		setCookie("barProg", barY);
+		setCookie("barProg2", barYPos)
+		
+		setCookie("timeS", 0);
+		setCookie("timeM", 0);
+		setCookie("timeH", 0);
+		
+		} else {
+		
+		}
+	 }
+	 
+	 //onclick on jar
+	 if (mouseX > x - 25 && mouseX < x - 25 + jarSizeX && mouseY > y && mouseY < y + jarSizeY ) {
+	  if (butikNumber === 0) {
+	  money += 1 + (1 * skovNumber ) + (5 * butikNumber);
+	  } else {
+	  money += 1 + (1 * skovNumber ) + (5 * butikNumber) - 1;
+	  }
+	  coinListX.push(x);
+	  coinListY.push(y);
+	  
+	  barY += parseFloat(1/times);
+	  barYPos -= 1/times;
+	  TimesClicked++;
+	  
+	  //CPS += 1 + butiknumber*5 + skovnumber;
+	  
+	  //saves bar progress
+	  setCookie("barProg", parseInt(barY));
+	  setCookie("barProg2", parseInt(barYPos));
+	  
+	  setCookie("times", parseFloat(times));
+	  
+	  
+	  
+	  coinY = 200 - 25;
+		
+	  var coin = {};
+	  coin.x = random(0,width);
+	  coin.y = 0;
+	  coinsFalling.push(coin);
+	  
+	 }
+	 
+	 //skoven 
+	 
+	 if (money >= skovpris && shopON  && mouseX > skovX && mouseX < skovX + skovBredde && mouseY > skovY && mouseY < skovY + skovHoojde){
+		money = money - skovpris;
+		shopON = true;
+		skovNumber = skovNumber + 1;
+		skovpris += parseInt(skovpris/2);
+		
+		}
+		//butik
+		if (money >= butikpris && shopON  && mouseX > butikX && mouseX < butikX + butikBredde && mouseY > butikY && mouseY < butikY + butikHoojde){
+		money = money - butikpris;
+		shopON = true;
+		butikNumber = butikNumber + 1;
+		butikpris += parseInt(butikpris/2);
+		}
+		//avis
+		if (money >= avispris && shopON  && mouseX > avisX && mouseX < avisX + avisBredde && mouseY > avisY && mouseY < avisY + avisHoojde){
+		money = money - avispris;
+		shopON = true;
+		avisNumber = avisNumber + 1;
+		avispris += parseInt(avispris/2);
+		}
+		//tv
+		if (money >= tvpris && shopON  && mouseX > tvX && mouseX < tvX + tvBredde && mouseY > tvY && mouseY < tvY + tvHoojde){
+		money = money - tvpris;
+		shopON = true;
+		tvNumber = tvNumber + 1;
+		tvpris += parseInt(tvpris/2);
+		}
+	 
+	 
+	  if (mouseX > shopsignX + 36 && mouseX < shopsignX + shopsignBredde - 36 && mouseY > shopsignY + 26 && mouseY < shopsignY + shopsignHoojde ) {
+	
+	if(shopON ===true){
+	shopON = false;
+	}else{
+	shopON = true;
+	}
+	
+		}
+	
+		
+	Forjar = false;
+    Shopjar = false;
+	Newsjar = false;	
+    Tvjar = false;	
+	
+		//Forrest Open
+		
+	if (shopON === true && mouseX > infoX && mouseX < infoX + infoBredde && mouseY > infoY && mouseY < infoY + infoHoojde){
+	if(Forjar ===true){
+	Forjar = false;
+	}else{
+	Forjar = true;
+	}
+	}
+	
+	//Shop Open
+	
+	 if (shopON === true && mouseX > infoX2 && mouseX < infoX2 + infoBredde2 && mouseY > infoY2 && mouseY < infoY2 + infoHoojde2){
+	if(Shopjar ===true){
+	Shopjar = false;
+	}else{
+	Shopjar = true;
+	}
+	}
+	//Newspaper Open
+	
+	if (shopON === true && mouseX > infoX3 && mouseX < infoX3 + infoBredde3 && mouseY > infoY3 && mouseY < infoY3 + infoHoojde3){
+	if(Newsjar ===true){
+	Newsjar = false;
+	}else{
+	Newsjar = true;
+	}
+	}
+	//Tv Open
+	
+	if (shopON === true && mouseX > infoX4 && mouseX < infoX4 + infoBredde4 && mouseY > infoY4 && mouseY < infoY4 + infoHoojde4){
+	if(Tvjar ===true){
+	Tvjar = false;
+	}else{
+	Tvjar = true;
+	}
+	}
+	//Credit'ssign Open Funtion
+	
+	  if (mouseX > 150 - 8 && mouseX < 150 + 180 && mouseY > 410 + 2 && mouseY < 410 + 100 ) {
+	
+	if(creditOpen ===true){
+	creditOpen = false;
+	}else{
+	creditOpen = true;
+	}
+	
+		}
+		
+		
+	
+	 };
+	  
+	 /* @pjs preload="Newsjar.png"; */
+	var Newsa = loadImage("News_jar.png");
+	  
+	 /* @pjs preload="Forrestjar.png"; */
+	var Fora = loadImage("Forrest_jar.png");
+	 
+	 /* @pjs preload="TVjar.png"; */
+	var Tva = loadImage("TV_jar.png");
+	 
+	 /* @pjs preload="Shopjar.png"; */
+	var Shopa = loadImage("Shop_jar.png");
+	 
+	 /* @pjs preload="Credits.png"; */
+	var creditAd = loadImage("Credits.png");
+	 
+	 //Old Credit image
+	/* @pjs preload="CreditSign.png"; */
+	//var creditsignImg = loadImage("CreditSign.png");
+	 
+	 /* @pjs preload="Jar2.png"; */
+	var jarImg = loadImage("New_jar.png");
+
+	 /* @pjs preload="Money 1+.png"; */
+	//var moneyImg = loadImage("Money 1+.png");
+	var moneyImg = loadImage("Coins.png");
+
+	 /* @pjs preload="skov.png"; */
+	var skovImg = loadImage("skov.png");
+	
+	//Old Shop image
+	/* @pjs preload="Shop-Knap.png"; */
+	//var shopImg = loadImage("Shop-Knap.png");
+
+	/* @pjs preload="shop_image.png"; */
+	var butikImg = loadImage("shop_image.png");
+	
+	/* @pjs preload="Avis.png"; */
+	var avisImg = loadImage("Avis.png");
+	
+	//Old Tv
+	/* @pjs preload="tv.png"; */
+	var tvImg = loadImage("tv.png");
+	
+	/* @pjs preload="Info.png"; */
+	var infoImg = loadImage("Info.png");
+	
+	/* @pjs preload="coin.png"; */
+	var BigcoinImg = loadImage("coin.png");
+	
+	// New Shop image
+	/* @pjs preload="SbtnV2.png"; */
+	var shopImg = loadImage("SbtnV2.png");
+	
+	//New Credit image
+	/* @pjs preload="CbtnV2.png"; */
+	var creditsignImg = loadImage("CbtnV2.png");
+	
+	/* @pjs preload="Bar.png"; */
+	var BarImg = loadImage("Bar.png");
+	
+	/* @pjs preload="BarBG.png"; */
+	var BarBGImg = loadImage("BarBG.png");
+	
+	/* @pjs preload="BarFrame.png"; */
+	var BarFrame = loadImage("BarFrame.png");
+	
+    //New Stand
+	/* @pjs preload="Stand_new.png"; */
+	var StandNew = loadImage("Stand_new.png");
+	
+	/* @pjs preload="BarUpgrades.png"; */
+	var BarUpg = loadImage("BarUpgrades.png");
+	
+	/* @pjs preload="ClickerUpgrades.png"; */
+	var ClickerUpg = loadImage("ClickerUpgrades.png");
+	
+	/* @pjs preload="AutoUpgrades.png"; */
+	var AutoUpg = loadImage("AutoUpgrades.png");
+	
+	/* @pjs preload="Arrow_Back.png"; */
+	var AutoUpg = loadImage("Arrow_Back.png");
+	
+	/* @pjs preload="Arrow_Left"; */
+	var AutoUpg = loadImage("Arrow_Left.png");
+	
+	/* @pjs preload="Arrow_Right.png"; */
+	var AutoUpg = loadImage("Arrow_Right.png");
+	
+	  var draw = function(){
+	
+	  
+	  setCookie("money", money);
+	  setCookie("skovNumber", skovNumber);
+	  setCookie("butikNumber", butikNumber);
+	  setCookie("avisNumber", avisNumber);
+	  setCookie("tvNumber", tvNumber);
+	  setCookie("secondsInt", secondsInt);
+	  setCookie("TimesClicked", TimesClicked);
+	  setCookie("butikpris", butikpris);
+	  setCookie("skovpris", skovpris);
+	  setCookie("avispris", avispris);
+	  setCookie("tvpris", tvpris);
+	  
+	background(245,245,245);
+	
+	//BarBackground
+	  image(BarBGImg, 30, barBackgroundY, 30, BGbarY);
+	  
+	  //Bar
+	  //image(BarImg, 30, barYPos, 30, barY);
+	  //noFill();
+	  fill(253, 148, 155);
+	  rect(30, barYPos, 29, barY)
+	  
+	  //BarFrame
+	  //image (BarFrame, 30, barYPos, 30, barY);
+	  
+	  //ClampY
+	if (barY >= BGbarY) {
+	  
+	  barY = 300;
+	  barYPos = 100;
+	  
+	  }
+	  
+	  //BarFull
+	  var CheckFilled = function () {
+	  if(barY === BGbarY) {
+	  BarFilled = true;
+	  }
+	  };
+	  
+	  CheckFilled();
+	  
+	  var Filled = function () {
+	  if( BarFilled === true){
+	  barY = 0;
+	  barYPos = 420;
+	  BarFilled = false;
+	  money += money;
+	  times += 0.25;
+	  setCookie("times", times);
+	  }
+	  };
+	  
+	  Filled();
+
+	//jar 
+	if(x < width / 2 - jarSizeX / 2 ) {
+	 x += 1;
+	   }
+	   
+	   if(y < height / 2 - jarSizeY / 2 ) {
+	 y += 1;
+	   }
+	   
+	  
+	   image(jarImg, x - 25, y, jarSizeX, jarSizeY);
+	  
+	  
+	  smoney = money;
+	  
+	  var smoney = numeral(money).format('0.0a');
+	  
+	fill (0,0,0)
+	textSize(12);
+	text("Money: ₡"+ smoney, 280,20);
+	//text("CPS: " + CPS2, 280, 40);
+	
+	//automated money
+	if (autoClicktimeM < millis() - autoClickTimestampM) {
+	money += (5/50 * avisNumber) + (50/50 * tvNumber) ;
+	autoClickTimestampM = millis();
+	}
+	
+	
+	if (autoClicktime < millis() - autoClickTimestamp){
+	setCookie("money", secondsInt)
+	secondsInt++;
+	setCookie("timeS", secondsInt);
+	butik5 = butikNumber*5
+	//money += (5 * avisNumber) + (50 * tvNumber) ;
+	autoClickTimestamp = millis();
+	if (CPS > 0) {
+	CPSb = CPS;
+	} else {
+	CPSb = 0;
+	}
+	if (butikNumber != 0 || skovNumber != 0) {
+	CPS2 = CPSb + (tvNumber*50) + (avisNumber*5);
+	} else {
+	CPS2 = CPS;
+	}
+	CPS = 0;
+	}  
+	
+	for (var i = coinListX.length -1; i >= 0; i--){
+	
+	//image(moneyImg, coinListX[i], coinListY[i], 50, 50);
+	
+	coinListY[i] -= 10;
+
+	if (coinListY[i] < 0 ){
+	 coinListY.splice(i,1);
+	 coinListX.splice(i, 1);
+	 
+	}
+
+	}
+	
+	for (var i = coinsFalling.length -1; i >= 0; i--){
+	
+	var coin = coinsFalling[i];
+	
+	image(moneyImg, coin.x, coin.y, 80, 60);
+	
+	coin.y += 10;
+
+	if (coin.y > height ){
+	 coinsFalling.splice(i,1);
+	 
+	}
+
+	}
+	
+	 
+	   image(shopImg,shopsignX , shopsignY, shopsignBredde, shopsignHoojde);
+	  
+	  if(shopON === true){
+	  
+	  
+	  //time
+		text("Time Played: " + hoursInt + "h " + minutesInt + "m " + secondsInt + "s", 15, 95);
+		
+		//checks if money is more than price
+		if (money >= skovpris) {
+		forrestRed = 0;
+		forrestGreen = 255;
+		} else {
+		forrestRed = 255;
+		forrestGreen = 0;
+		}
+
+		if (money >= butikpris) {
+		butikRed = 0;
+		butikGreen = 255;
+		} else {
+		butikRed = 255;
+		butikGreen = 0;
+		}
+		
+		if (money >= avispris) {
+		avisRed = 0;
+		avisGreen = 255;
+		} else {
+		avisRed = 255;
+		avisGreen = 0;
+		}
+
+		if (money >= tvpris) {
+		tvRed = 0;
+		tvGreen = 255;
+		} else {
+		tvRed = 255;
+		tvGreen = 0;
+		}
+		
+	    textSize(12);
+	    image(skovImg,400,310,80,80);
+		fill(forrestRed, forrestGreen, 0);
+		text("₡" + numeral(skovpris).format("0.0a"),430,405);
+		fill(0,0,0);
+		text("Forrests:  " + numeral(skovNumber).format("0,0"),15,15);
+		image(StandNew,410,208,70,80);
+		fill(butikRed, butikGreen, 0);
+		text ("₡" + numeral(butikpris).format("0.0a"),425,300);
+		fill(0,0,0);
+		text("Stands:  " + numeral(butikNumber).format("0,0"),15,35);
+		image(avisImg,390,110,100,80);
+		fill(avisRed, avisGreen, 0);
+		text ("₡" + numeral(avispris).format("0.0a"),430,200);
+		fill(0,0,0);
+		text("Newspapers:  " + numeral(avisNumber).format("0,0"),15,55);
+		image(tvImg,374,10,150,100);
+		fill(tvRed, tvGreen, 0);
+		text("₡" + numeral(tvpris).format("0.0a"),425,100);
+		fill(0,0,0);
+		text("Tvs:  " + numeral(tvNumber).format("0,0"),15,75);
+		image(infoImg,345,340,30,30);
+		image(infoImg,345,230,30,30);
+		image(infoImg,345,130,30,30);
+		image(infoImg,345,30,30,30);
+		//Times Clicked on Jar
+		text("Times Clicked: " + numeral(TimesClicked).format("0,0"),15,115);
+		//clear button
+	  fill(255, 0, 0);
+	  rect(460, 0, 40, 10);
+	  fill(0, 0, 0);
+	  textSize(10);
+	  fill(255,255,255);
+	  text("RESET", 464, 9);
+	  fill(0, 0, 0);
+	  }
+	 
+	 
+	 
+	 //every 60 seconds minutesInt++
+	 if (secondsInt >= 60) {
+	 minutesInt++;
+	 secondsInt = 0
+	 setCookie("timeM", minutesInt);
+	 }
+     if	(minutesInt >= 60) {
+	 hoursInt++;
+	 minutesInt = 0;
+	 setCookie("timeH", hoursInt);
+	 setCookie("timeM", 0);
+	 }
+	 
+	  bigcoinCountdown = bigcoinCountdown - 1;
+	  
+	   //time to bigcoin
+	 if( bigcoinCountdown <= 0){
+	 
+	 image(BigcoinImg,bigcoinX,bigcoinY,bigcoinHoojde,bigcoinBredde);
+	 if (mouseClicked && mouseX > bigcoinX && mouseX < bigcoinX + bigcoinBredde && mouseY > bigcoinY && mouseY < bigcoinY + bigcoinHoojde) {
+	 bigcoinCountdown = random(15000,20000);
+	 money = money * floor(random(2,10));
+	 
+	 }
+	 }
+	
+	image(creditsignImg,creditsignBredde,creditssignHoojde,creditsignX,creditsingY);
+	
+	if (creditOpen === true) {
+	image(creditAd,creditX,creditY,creditBredde,creditHoojde);
+	text("Click on the sign again to close",150,400);
+	
+	
+	}
+	
+	if (Forjar === true) {
+	image(Fora,ForjarX,ForjarY,ForjarBredde,ForjarHoojde);
+	text("Click anywhere to close",150,30);
+	
+	
+	}
+	
+	
+	
+	if (Shopjar === true) {
+	image(Shopa,ShopjarX,ShopjarY,ShopjarBredde,ShopjarHoojde);
+	text("Click anywhere to close",150,30);
+	
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	if (Newsjar === true) {
+	image(Newsa,NewsX,NewsY,NewsBredde,NewsHoojde);
+	text("Click anywhere to close",150,30);
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	if (Tvjar === true) {
+	image(Tva,TvjarX,TvjarY,TvBredde,TvHoojde);
+	text("Click anywhere to close",150,30);
+	
+	
+	
+	
+	
+	}
+	
+	text("V: " + vers,15,490);
+	
+	 //Bar Filled
+	  pushMatrix();
+      translate(BarFilledX,BarFilledY);
+      rotate(-HALF_PI);
+      translate(-BarFilledX,-BarFilledY);
+	  textSize(20);
+      text(parseInt( barY/BGbarY*100) + "%", BarFilledX, BarFilledY);
+      popMatrix();
+	  }
+    }};
+	
+	
+	
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
