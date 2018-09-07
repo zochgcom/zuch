@@ -34,10 +34,18 @@
     for (i=news.length-1;i>=0;i--) {
         var header = document.createElement("h2");
         var text = document.createElement("p");
+        var date = document.createElement("p");
 
         header.innerHTML = news[i].header;
         text.innerHTML = news[i].body;
+        date.innerHTML = news[i].date;
 
+        date.style.fontSize = "10px";
+        date.style.marginBottom = "-25px";
+        
+        header.style.marginBottom = "-8px"
+
+        document.getElementById("news").appendChild(date);
         document.getElementById("news").appendChild(header);
         document.getElementById("news").appendChild(text);
     }
