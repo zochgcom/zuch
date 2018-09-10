@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>EC: Evolution Cells</title> 
+	 <style>
+canvas:hover {
+cursor: none;
+		 }		
+</style>
+
+<link rel="stylesheet" type="text/css" href="../../css/css.css">
+</head>
+ <body>
+
+        <div id="sidebar">
+                <img src="../../icon.svg" width="35" style="position:fixed; top: 6px;left:6px" class="icon">
+                <ul class="horizontal-list">
+                    <li><a href="../../	"><h2>Home</h2></a></li>
+                    <li><a href="../../games"><h3>Games</h3></a>
+                        <ul style="margin-top:-16px" class="withshit">
+                            <li style="margin-top:-16px;"><a href="../jarclicker">Jar Clicker</a></li>
+                            <li style="margin-top:-16px; color:#ffc805"><a>Evoluion Cells</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../updates"><h3>Updates</h3></a></li>
+                </ul>
+            </div>
+
+    <p align="center"> 
+      <canvas id="mycanvas" style="margin-top: 8px"></canvas> 
+    </p>
+	
+ </body>
+ <script src="processing.min.js"></script>
+ <canvas data-processing-sources="hello-web.pde" id="canvas"></canvas> 
+ 
+ <!--
+DOWNLOAD:
+Notepad++
+Chrome
+
+
+ -->
+ 
+ <script>
+ 
+function setCookie(varNavn, value) {
+
+// Build the expiration date string:
+var expiration_date = new Date();
+expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+
+var expires = new Date();
+ expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
+
+
+document.cookie = varNavn + "=" + value + ";path=/;expires=" + expires.toGMTString()+";domain=zochgcom.github.io";
+}
+
+function getCookie(varNavn) {
+    var name = varNavn + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+ 
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+		
+//im a friend of oggyfarlig im not stealing his work
+var wait2 = 1;
+var end = false;
+var postext = 110;
+var postext2 = 200;
+var seconds = [];
+background(255, 0, 0);
+fill(255, 255, 255);
+textSize(12);
+text("WARNING! Contains flashing images", postext, postext2);
+
+draw = function() {
+    var seconds = Math.round(millis() / 1000);
+
+if (seconds >= 5 && end === false) {
+
+var postext = 10000;
+var postext2 = 10000;
+
+var pres = 0;
+var xpos = 200;
+var ypos = 200;
+var agarSize = 10;
+var pres3 = pres + 1;
+
+var foodxpos = 50;
+var foodypos = 50;
+var foodSize = 10;
+
+draw = function() {
+
+    var a = foodxpos - mouseX;
+    var b = foodypos - mouseY;
+
+    var c = Math.sqrt( a*a + b*b );
+
+
+    if (c < agarSize /2 + foodSize /2 ){
+        agarSize = agarSize + 1 * pres3;
+        foodxpos = random (10, 390);
+        foodypos = random (10, 390);
+    }
+
+    background (219, 219, 219);
+
+    fill(random(1, 255), random(1, 255), random(1, 255));
+    ellipse (mouseX, mouseY, agarSize, agarSize);
+    var mass = function() {
+        var textMass = "Mass: " + agarSize;
+        var pres2 = "Prestige: " + pres;
+        
+        fill (0, 0, 0);
+        textSize(20);
+        text (textMass, 0, 390);
+        text (pres2, 0, 370);
+    
+    fill(random(1, 255), random(1, 255), random(1, 255));
+
+    // (random(1, 255), random(1, 255), random(1, 255))
+
+    ellipse (foodxpos, foodypos, foodSize, foodSize);
+
+
+    /*var oggy = function() {
+        
+        fill (0, 0, 0);
+        textSize(20);
+        text ("By Oggyfarlig", 10, 20);
+        
+        };
+        oggy();*/
+    };
+    mass();
+
+    if (agarSize >= 1000) {
+        pres += 1;
+        pres3 = pres + 1;
+        agarSize = 10 * pres3;
+    }
+    if (pres >= 1000) {
+        end = true
+    }
+    if (end === true) {
+    text("GG! You won!", 135, 200)
+    }
+};
+
+}
+
+};
+    }};
+	
+	
+	
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor
+    var processingInstance = new Processing(canvas, sketchProc); 
+
+ </script>
+
+</html>
