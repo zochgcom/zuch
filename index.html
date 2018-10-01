@@ -38,6 +38,9 @@
 <script src="./js/updates.js"></script>
 <script>
 
+    var regex = /(([a-z]+:\/\/|(this.+\/))?(([a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal|ga|tk|com|dk|co|co.uk|uk))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@/?]*)?)(\s+|$)/gi;
+    //var urlRegex = /(https?:\/\/[^\s]+)/g;
+
     for (i=news.length-1;i>=0;i--) {
         var header = document.createElement("h2");
         var text = document.createElement("p");
@@ -46,6 +49,10 @@
         header.innerHTML = news[i].header;
         text.innerHTML = news[i].body;
         date.innerHTML = news[i].date;
+
+        text.innerHTML = text.innerHTML.replace(regex, function(url) {
+        return '<a href="' + url.replace("this","") + '" style="color:red">' + url.replace("this","") + '</a>';
+    })
 
         date.style.fontSize = "10px";
         date.style.marginBottom = "-25px";
