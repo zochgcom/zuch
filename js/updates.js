@@ -11,7 +11,7 @@ var news = [
   },
   {
   header:"New Logo",
-    body:"We created a new logo and we're using on the website now. this./png/zg.png",
+    body:"We created a new logo and we're using on the website now. this./js/updates.js",
     date:"1/10/18 - 13:32"
   }
 
