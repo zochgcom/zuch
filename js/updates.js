@@ -6,7 +6,7 @@ var news = [
   },
   {
   header:"Ported games",
-    body:"Ported Jar clicker (this./games/jarclicker/) and Evolution cells. Can be found under Games in the sidebar",
+    body:"Ported Jar clicker ( this./games/jarclicker/ ) and Evolution cells. Can be found under Games in the sidebar",
     date:"10/9/18 - 8:18"
   },
   {
