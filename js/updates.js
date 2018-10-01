@@ -1,7 +1,7 @@
 var news = [
   {
     header:"New Website",
-   body:"Hi guys we have a new website and it should work alot better than the old one! ( http://zochg.tk/ )",
+   body:"Hi guys we have a new website and it should work alot better than the old one! ( zochg.tk )",
    date:"7/9/18 - 11:52"
   },
   {
