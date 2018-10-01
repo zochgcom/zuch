@@ -1,12 +1,12 @@
 var news = [
   {
     header:"New Website",
-   body:"Hi guys we have a new website and it should work alot better than the old one!",
+   body:"Hi guys we have a new website and it should work alot better than the old one! (http://zochg.tk/)",
    date:"7/9/18 - 11:52"
   },
   {
   header:"Ported games",
-    body:"Ported Jar clicker ( this./games/jarclicker/ ) and Evolution cells. Can be found under Games in the sidebar",
+    body:"Ported Jar clicker ( this./games/jarclicker/ ) and Evolution cells ( this./games/evolutioncells/ ). Can be found under Games in the sidebar",
     date:"10/9/18 - 8:18"
   },
   {
