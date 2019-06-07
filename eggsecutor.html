@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+
+textarea{
+    background: url(http://i.imgur.com/2cOaJ.png);
+background-attachment: local;
+background-repeat: no-repeat;
+padding-left: 35px;
+padding-top: 10px;
+    border-color:#ccc;
+		line-height: 16px;	
+}
+
+</style>
+<head>
+
+<body>
+<input type="file" id="file" onchange="readFile()"><br><br>
+<textarea placeholder="code" id="code" wrap="off" spellcheck="off">console.log("hello world!")</textarea>
+<button onclick="ev()">execute</button><br>
+<pre id="output">Output:</pre>
+</body>
+
+<script>
+function ev() {
+document.getElementById("output").innerText = "Output:";
+
+var code = document.getElementById("code").value;
+
+code = code.replace(new RegExp("console.log","g"), "log");
+
+eval(code);
+}
+
+function log(i)
+{
+	document.getElementById("output").innerText = document.getElementById("output").innerText + "\n" + i;
+}
+
+function error(i)
+{
+	document.getElementById("output").innerHTML = document.getElementById("output").innerHtml + "\n<b style=\"color:red\">" + i + "</b>";
+}
+
+window.addEventListener('error', function(event) {
+
+console.log(event);
+error(event.message + ":" + event.lineno + ":" + event.colno);
+
+})
+
+function readFile()
+{
+	readFileContent().then(content => {
+	
+		document.getElementById("code").value = content;
+	
+	});
+}
+
+function readFileContent() {
+
+	var file = document.getElementById("file").files[0];
+
+	const reader = new FileReader()
+  return new Promise((resolve, reject) => {
+    reader.onload = event => resolve(event.target.result)
+    reader.onerror = error => reject(error)
+    reader.readAsText(file)
+  })
+}
+</script>
+
+</html>
