@@ -20,7 +20,8 @@ padding-top: 10px;
 <body>
 <input type="file" id="file" onchange="readFile()"><br><br>
 <textarea placeholder="code" id="code" wrap="off" spellcheck="off">console.log("hello world!")</textarea>
-<button onclick="ev()">execute</button><br>
+<button onclick="ev()">execute</button>
+<button onclick="copy()">Extract</button><br>
 <pre id="output">Output:</pre>
 </body>
 
@@ -41,6 +42,13 @@ query[s[0]] = s[1]
 
 if (query.code)
 document.getElementById("code").value = atob(query.code)
+	
+function copy()
+	{
+	var b64 = btoa(document.getElementById("code").value)
+
+prompt("Link to this code",window.location.href + "/?code=" + b64) 	
+	}
 	
 function ev() {
 document.getElementById("output").innerText = "Output:";
