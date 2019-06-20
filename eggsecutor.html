@@ -25,6 +25,23 @@ padding-top: 10px;
 </body>
 
 <script>
+	
+var query = {}
+
+var split = window.location.search;
+var spit = split.substring(1,split.length).split("&")
+
+spit.forEach(s => {
+
+var s = s.split("=")
+
+query[s[0]] = s[1]
+
+})
+
+if (query.code)
+document.getElementById("code").value = atob(query.code)
+	
 function ev() {
 document.getElementById("output").innerText = "Output:";
 
