@@ -47,7 +47,7 @@ function copy()
 	{
 	var b64 = btoa(document.getElementById("code").value)
 
-prompt("Link to this code",window.location.origin + window.location.path + "?code=" + b64) 	
+prompt("Link to this code",window.location.origin + window.location.pathname + "?code=" + b64) 	
 	}
 	
 function ev() {
