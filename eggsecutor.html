@@ -206,6 +206,9 @@ query[s[0]] = s[1]
 if (query.code)
 document.getElementById("code").value = atob(query.code)
 	
+if (query.autoexec)
+	ev()		
+	
 function copy()
 	{
 	var b64 = btoa(document.getElementById("code").value)
