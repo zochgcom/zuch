@@ -62,6 +62,12 @@
         document.getElementById("news").appendChild(header);
         document.getElementById("news").appendChild(text);
     }
+    
+    var goto = confirm(`We have migrated from this website to a new one.
+Do you want to visit the new one instead?`)
+    
+    if (goto)
+        window.location.replace("https://zochg.herokuapp.com")
 
 </script>
 </html>
